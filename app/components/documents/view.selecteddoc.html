@@ -1,0 +1,69 @@
+<div class="col-sm-12">
+	<div class="col-sm-4">
+		<p>Transaction Type: {{sd.document.dateOfCreation|date}}</p>
+		<p>Date of Creation: {{sd.document.dateOfCreation|date}}</p>
+	</div>	
+	
+	<div class="col-sm-4">
+		<p>Business partner</p>
+		<p>{{sd.document.businessPartner.name}}</p>
+		<p>{{sd.document.businessPartner.address}}, {{sd.document.businessPartner.city}}</p>
+	</div>
+
+	<div class="col-sm-4">
+		<p>Status:{{sd.document.status}}</p>
+		<p><button ng-click="sd.recordDoc()" class="btn btn-primary">Record</button></p>	
+	</div>
+</div>
+<div class="col-sm-12">
+	<div class="col-sm-8">
+		  <table class="table table-hover">
+		    <thead>
+		      <tr>
+		        <th>Article</th>
+		        <th>Price</th>
+		        <th>Quantity</th>
+		        <th>Total Value</th>
+		      </tr>
+		    </thead>
+		    <tbody>
+		      <tr ng-repeat="item in sd.items">
+		        <td>{{sd.getName(item.article)}}</td>
+		        <td>{{item.price}}</td>
+		        <td>{{item.quantity}}</td>
+		        <td>{{item.quantity * item.price|number : 2}}</td>
+		      </tr>
+		    </tbody>
+  		</table>	
+
+	</div>
+	<div class="col-sm-4">
+		<form>		
+			<div class="form-group">
+				  <label for="article">Article:</label>
+				  <select type="text" class="form-control" id="article"
+				  ng-options="art.code as art.name for art in sd.names"  ng-model=sd.newItem.article><select>
+
+			</div>
+			<div class="form-group">
+				  <label for="price">Price:</label>
+				  <input type="number" class="form-control" id="price" ng-model=sd.newItem.price>
+			</div>
+			<div class="form-group">
+				  <label for="quantity">Quantity:</label>
+				  <input type="number" class="form-control" id="quantity" ng-model=sd.newItem.quantity>
+			</div>
+			<button class="btn btn-primary" ng-click="sd.addNew()">Save</button>
+		</form>
+
+
+
+
+
+
+
+
+
+
+	</div>
+</div>

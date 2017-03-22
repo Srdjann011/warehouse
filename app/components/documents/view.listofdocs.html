@@ -1,0 +1,44 @@
+<div class="container-fluid">
+  <div>
+      <div class="col-sm-2">
+        <ul class="pagination" ng-repeat="i in dc.pagArr">
+          <li ng-class="{'active' : i== dc.page}"><a ng-click="dc.changePage(i)" ng-href>{{i}}</a></li>
+        </ul>
+      </div>
+      <div class="col-sm-10">
+      <button ng-show="!open" ng-click="open = !open" class="btn btn-primary pull-right">Open table settings</button>
+      <button ng-show="open" ng-click="open = !open" class="btn btn-primary pull-right">Close table settings</button>
+      <check-dir ng-show="open" columns="dc.columns"></check-dir>
+
+
+
+      </div>
+  </div>
+         
+  <table class="table table-hover">
+    <thead>
+      <tr>
+        <th ng-show="dc.columns['Date of Creation']" >Date of Creation</th>
+      
+        <th ng-show="dc.columns['Date of Recording']">Date of Recording</th>
+        <th ng-show="dc.columns['Status']">Status</th>
+        <th ng-show="dc.columns['Transaction type']">Transaction type</th>
+        <th ng-show="dc.columns['Business partner']">Business partner</th>
+        <th <th ng-show="dc.columns['Business partner location']">Business partner location</th>
+        <th <th ng-show="dc.columns['Year']">Year</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr ng-click="dc.loadDocument(doc)" ng-repeat="doc in dc.doclist">
+        <td ng-show="dc.columns['Date of Creation']">{{doc.dateOfCreation | date}}</td>
+        <td ng-show="dc.columns['Date of Recording']" >{{doc.dateOfRecording | date}}</td>
+        <td ng-show="dc.columns['Status']">{{doc.status}}</td>
+        <td ng-show="dc.columns['Transaction type']">{{doc.transactionType}}</td>
+        <td <th ng-show="dc.columns['Business partner']">{{doc.businessPartner.name}}</td>
+        <td <th ng-show="dc.columns['Business partner location']">{{doc.businessPartner.city}},   {{doc.businessPartner.address}}</td>
+          <td <th ng-show="dc.columns['Year']">{{doc.year}}</td>
+      </tr>
+      
+    </tbody>
+  </table>
+</div>
